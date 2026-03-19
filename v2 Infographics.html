@@ -129,53 +129,89 @@
             </div>
         </section>
 
-        <!-- PANEL 3: The Engine -->
         <section class="panel bg-slate-900 text-stone-100" id="panel-2">
-            <div class="panel-content">
-                <div class="mb-10 text-center">
-                    <h2 class="text-4xl font-bold text-emerald-400 mb-4">The "Intranet Digestion" Engine</h2>
-                    <p class="text-lg text-slate-400 max-w-4xl mx-auto">Moving from Generative Text to <span class="text-white font-bold">Generative Action</span>.</p>
+    <div class="panel-content">
+        <div class="mb-10 text-center">
+            <h2 class="text-4xl font-bold text-emerald-400 mb-4">Autonomous Workflow Synthesis</h2>
+            <p class="text-lg text-slate-400 max-w-4xl mx-auto">Moving from Generative Text to <span class="text-white font-bold">Cross-SaaS Execution</span>.</p>
+        </div>
+
+        <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 relative">
+            <div class="absolute top-4 right-4">
+                <button onclick="runEngineSimulation()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-full font-bold transition text-sm shadow-lg">
+                    <span class="mr-2">&#9654;</span> Initialize Agentic Loop
+                </button>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4 mt-8">
+                <div id="node-1" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                    <div class="text-4xl mb-3">📡</div>
+                    <h4 class="font-bold text-white mb-2">Intent Capture</h4>
+                    <p class="text-xs text-slate-400">"New hire requires POS credentials & secure Slack tunneling."</p>
                 </div>
-
-                <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 relative">
-                    <div class="absolute top-4 right-4">
-                        <button onclick="runEngineSimulation()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-full font-bold transition text-sm shadow-lg">
-                            <span class="mr-2">&#9654;</span> Simulate Action Flow
-                        </button>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mt-8">
-                        <div id="node-1" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
-                            <div class="text-4xl mb-3">👤</div>
-                            <h4 class="font-bold text-white mb-2">User Request</h4>
-                            <p class="text-xs text-slate-400">"New hire needs POS access and Slack setup."</p>
-                        </div>
-                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
-                        <div id="node-2" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
-                            <div class="text-4xl mb-3">🧠</div>
-                            <h4 class="font-bold text-white mb-2">RAG Digestion</h4>
-                            <p class="text-xs text-slate-400">Scans Franchise SOPs and identifies manual setup bottleneck.</p>
-                        </div>
-                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
-                        <div id="node-3" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
-                            <div class="text-4xl mb-3">⚙️</div>
-                            <h4 class="font-bold text-white mb-2">Agentic Scripting</h4>
-                            <p class="text-xs text-slate-400">AI drafts a Python script to automate Toast and Slack API calls.</p>
-                        </div>
-                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
-                        <div id="node-4" class="flow-node bg-emerald-900 border-2 border-emerald-700 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
-                            <div class="text-4xl mb-3">✅</div>
-                            <h4 class="font-bold text-emerald-400 mb-2">Execution</h4>
-                            <p class="text-xs text-emerald-200/70">Access granted. Process fully automated for next hire.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 bg-black rounded p-4 font-mono text-xs text-slate-500 h-24 overflow-y-auto" id="engine-terminal">
-                        > System idle. Waiting for simulation trigger...
-                    </div>
+                <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                <div id="node-2" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                    <div class="text-4xl mb-3">🧩</div>
+                    <h4 class="font-bold text-white mb-2">SOP Decomposition</h4>
+                    <p class="text-xs text-slate-400">RAG Engine maps unstructured Intranet PDFs to executable logic.</p>
+                </div>
+                <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                <div id="node-3" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                    <div class="text-4xl mb-3">🤖</div>
+                    <h4 class="font-bold text-white mb-2">Just-in-Time Coding</h4>
+                    <p class="text-xs text-slate-400">Agent synthesizes custom Python middleware for API handshakes.</p>
+                </div>
+                <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                <div id="node-4" class="flow-node bg-emerald-900 border-2 border-emerald-700 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                    <div class="text-4xl mb-3">⚡</div>
+                    <h4 class="font-bold text-emerald-400 mb-2">Verified Execution</h4>
+                    <p class="text-xs text-emerald-200/70">Access deployed. Agent monitors for "Self-Healing" errors.</p>
                 </div>
             </div>
-        </section>
+            
+            <div class="mt-8 bg-black rounded p-4 font-mono text-xs text-slate-500 h-24 overflow-y-auto" id="engine-terminal">
+                > Kernel ready. Awaiting intent-based trigger...
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+// --- Updated Simulation Logic ---
+function runEngineSimulation() {
+    const nodes = [
+        document.getElementById('node-1'), document.getElementById('node-2'),
+        document.getElementById('node-3'), document.getElementById('node-4')
+    ];
+    const terminal = document.getElementById('engine-terminal');
+    
+    nodes.forEach(n => n.classList.remove('active'));
+    terminal.innerHTML = '';
+    
+    const steps = [
+        { node: 0, text: "> [00:00] INTENT DETECTED: Natural Language request mapped to 'Provisioning_v4'.", delay: 500 },
+        { node: 1, text: "> [00:01] RAG-CORE: Synthesizing SOPs... 79% reduction in manual oversight found.", delay: 1500 },
+        { node: 2, text: "> [00:02] AGENT_SWARM: Drafting non-persistent Python script for OAuth2 handshake...", delay: 3000 },
+        { node: 2, text: "> [00:03] UNIT_TEST: Zero-shot validation passed. Encrypting transmission.", delay: 4500 },
+        { node: 3, text: "> [00:04] SUCCESS: Credentials provisioned. Self-healing logs initiated.", delay: 6000, color: '#10b981' }
+    ];
+
+    steps.forEach(step => {
+        setTimeout(() => {
+            nodes.forEach(n => n.classList.remove('active'));
+            nodes[step.node].classList.add('active');
+            
+            const logLine = document.createElement('div');
+            logLine.textContent = step.text;
+            if(step.color) logLine.style.color = step.color;
+            terminal.appendChild(logLine);
+            terminal.scrollTop = terminal.scrollHeight;
+            
+            if(step.node === 3) nodes.forEach(n => n.classList.add('active'));
+        }, step.delay);
+    });
+}
+</script>
 
         <!-- PANEL 4: Financials -->
         <section class="panel bg-white" id="panel-3">
