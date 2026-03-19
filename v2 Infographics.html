@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic-First ERP: Landscape Infographic</title>
+
+    <!-- Chosen Palette: Warm Neutral (bg-stone-50), Slate (text-slate-800), Emerald (accent/Agentic), Coral/Rose (contrast/Legacy) -->
+    <!-- Application Structure Plan: A horizontally scrolling, full-screen panel layout. Panel 5 now explicitly maps the GTM strategy from low-risk/high-turnover (QSR/Convenience) to high-reward/high-compliance (Healthcare). -->
+    <!-- Visualization & Content Choices: 1. Typographic intro. 2. Bar Chart (Team sizing). 3. HTML Flowchart (Engine simulation). 4. Line Chart (Financials). 5. HTML Grid Matrix (Updated GTM sequence). -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #fafaf9; 
+            color: #1e293b; 
+            overflow-y: hidden; 
+            margin: 0; padding: 0;
+        }
+
+        .infographic-container {
+            display: flex; overflow-x: auto; overflow-y: hidden;
+            height: 100vh; width: 100vw;
+            scroll-snap-type: x mandatory; scroll-behavior: smooth;
+            -ms-overflow-style: none; scrollbar-width: none;
+        }
+        .infographic-container::-webkit-scrollbar { display: none; }
+
+        .panel {
+            min-width: 100vw; height: 100vh;
+            scroll-snap-align: start; display: flex;
+            align-items: center; justify-content: center;
+            position: relative; padding: 4rem;
+        }
+
+        .panel-content { width: 100%; max-width: 1400px; max-height: 90vh; display: flex; flex-direction: column; justify-content: center; }
+        .chart-container { position: relative; width: 100%; height: 45vh; max-height: 500px; margin: 0 auto; }
+
+        .flow-node { transition: all 0.3s ease; opacity: 0.5; filter: grayscale(100%); }
+        .flow-node.active { opacity: 1; filter: grayscale(0%); transform: scale(1.05); box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2); border-color: #10b981; }
+
+        .nav-controls {
+            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 1rem; z-index: 50;
+            background: rgba(255,255,255,0.8); padding: 0.5rem 1rem; border-radius: 999px;
+            backdrop-filter: blur(10px); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .nav-dot { width: 12px; height: 12px; border-radius: 50%; background-color: #cbd5e1; cursor: pointer; transition: background-color 0.2s; }
+        .nav-dot.active { background-color: #059669; }
+
+        .btn-nav {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            background: white; border: 1px solid #e2e8f0; width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 50;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); font-size: 1.5rem; color: #475569; transition: all 0.2s;
+        }
+        .btn-nav:hover { background: #f8fafc; color: #059669; scale: 1.1; }
+        .btn-prev { left: 1rem; }
+        .btn-next { right: 1rem; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Overlay -->
+    <button class="btn-nav btn-prev" onclick="scrollPanel(-1)">&#8592;</button>
+    <button class="btn-nav btn-next" onclick="scrollPanel(1)">&#8594;</button>
+    
+    <div class="nav-controls" id="navDots">
+        <div class="nav-dot active" onclick="goToPanel(0)"></div>
+        <div class="nav-dot" onclick="goToPanel(1)"></div>
+        <div class="nav-dot" onclick="goToPanel(2)"></div>
+        <div class="nav-dot" onclick="goToPanel(3)"></div>
+        <div class="nav-dot" onclick="goToPanel(4)"></div>
+    </div>
+
+    <!-- Main Infographic Canvas -->
+    <div class="infographic-container" id="mainContainer">
+
+        <!-- PANEL 1: Title -->
+        <section class="panel bg-stone-50" id="panel-0">
+            <div class="panel-content text-center">
+                <div class="inline-block px-4 py-1 rounded-full bg-emerald-100 text-emerald-800 font-semibold text-sm mb-6 tracking-widest uppercase">
+                    Strategic Briefing
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold text-slate-900 tracking-tight leading-tight mb-8">
+                    The End of <br><span class="text-rose-500 line-through decoration-4">Legacy SaaS</span>
+                </h1>
+                <h2 class="text-3xl md:text-5xl font-bold text-emerald-600 mb-8">
+                    Agentic-First Service Management
+                </h2>
+                <p class="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed border-l-4 border-emerald-500 pl-6 text-left bg-white p-6 rounded-r-xl shadow-sm">
+                    Legacy platforms like ServiceNow are bloated, seat-based, and heavily reliant on manual configuration. We are entering the era where an AI-first architecture—digesting organizational knowledge and autonomously executing actions—will replace rigid monoliths.
+                </p>
+                <div class="mt-12 text-slate-400 animate-bounce text-2xl">&#8594; <span class="text-sm uppercase tracking-widest ml-2">Scroll to Explore</span></div>
+            </div>
+        </section>
+
+        <!-- PANEL 2: The Alpha Team -->
+        <section class="panel bg-white border-x border-stone-200" id="panel-1">
+            <div class="panel-content">
+                <div class="mb-10 text-center">
+                    <h2 class="text-4xl font-bold text-slate-800 mb-4">The "Small Team" Alpha</h2>
+                    <p class="text-lg text-slate-500 max-w-4xl mx-auto">By leveraging elite displaced engineers armed with AI-coding agents, a micro-team can drastically out-produce legacy enterprise monoliths.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-4 space-y-8">
+                        <div class="p-6 rounded-2xl bg-rose-50 border border-rose-100">
+                            <div class="text-sm font-bold text-rose-500 uppercase tracking-wider mb-2">Legacy Approach</div>
+                            <div class="text-5xl font-extrabold text-slate-800 mb-2">5,000</div>
+                            <div class="text-slate-600 font-medium">Engineers Required</div>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 relative overflow-hidden shadow-lg shadow-emerald-100">
+                            <div class="absolute top-0 right-0 p-4 opacity-20 text-6xl">🚀</div>
+                            <div class="text-sm font-bold text-emerald-600 uppercase tracking-wider mb-2">Agentic Approach</div>
+                            <div class="text-5xl font-extrabold text-slate-800 mb-2">50</div>
+                            <div class="text-slate-600 font-medium">Elite AI-Augmented Engineers</div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 bg-stone-50 p-6 rounded-2xl border border-stone-200">
+                        <div class="chart-container"><canvas id="alphaChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 3: The Engine -->
+        <section class="panel bg-slate-900 text-stone-100" id="panel-2">
+            <div class="panel-content">
+                <div class="mb-10 text-center">
+                    <h2 class="text-4xl font-bold text-emerald-400 mb-4">The "Intranet Digestion" Engine</h2>
+                    <p class="text-lg text-slate-400 max-w-4xl mx-auto">Moving from Generative Text to <span class="text-white font-bold">Generative Action</span>.</p>
+                </div>
+
+                <div class="bg-slate-800 rounded-2xl p-8 border border-slate-700 relative">
+                    <div class="absolute top-4 right-4">
+                        <button onclick="runEngineSimulation()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-full font-bold transition text-sm shadow-lg">
+                            <span class="mr-2">&#9654;</span> Simulate Action Flow
+                        </button>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-4 mt-8">
+                        <div id="node-1" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                            <div class="text-4xl mb-3">👤</div>
+                            <h4 class="font-bold text-white mb-2">User Request</h4>
+                            <p class="text-xs text-slate-400">"New hire needs POS access and Slack setup."</p>
+                        </div>
+                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                        <div id="node-2" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                            <div class="text-4xl mb-3">🧠</div>
+                            <h4 class="font-bold text-white mb-2">RAG Digestion</h4>
+                            <p class="text-xs text-slate-400">Scans Franchise SOPs and identifies manual setup bottleneck.</p>
+                        </div>
+                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                        <div id="node-3" class="flow-node bg-slate-700 border-2 border-slate-600 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                            <div class="text-4xl mb-3">⚙️</div>
+                            <h4 class="font-bold text-white mb-2">Agentic Scripting</h4>
+                            <p class="text-xs text-slate-400">AI drafts a Python script to automate Toast and Slack API calls.</p>
+                        </div>
+                        <div class="text-slate-500 text-2xl hidden md:block opacity-50">&#10132;</div>
+                        <div id="node-4" class="flow-node bg-emerald-900 border-2 border-emerald-700 rounded-xl p-6 w-full md:w-1/4 text-center z-10 relative">
+                            <div class="text-4xl mb-3">✅</div>
+                            <h4 class="font-bold text-emerald-400 mb-2">Execution</h4>
+                            <p class="text-xs text-emerald-200/70">Access granted. Process fully automated for next hire.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 bg-black rounded p-4 font-mono text-xs text-slate-500 h-24 overflow-y-auto" id="engine-terminal">
+                        > System idle. Waiting for simulation trigger...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 4: Financials -->
+        <section class="panel bg-white" id="panel-3">
+            <div class="panel-content">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5">
+                        <h2 class="text-4xl font-bold text-slate-800 mb-6">Financial Pivot:<br>Pricing for Outcomes</h2>
+                        <div class="space-y-6">
+                            <p class="text-lg text-slate-600">Legacy SaaS punishes growth. A <span class="font-bold text-rose-500">$200/seat/month</span> model scales linearly, causing friction.</p>
+                            
+                            <div class="bg-stone-50 p-6 rounded-xl border border-stone-200 border-l-4 border-l-emerald-500">
+                                <h3 class="font-bold text-slate-800 text-xl mb-2">Automation-as-a-Service</h3>
+                                <p class="text-slate-600 mb-4">A flat <span class="font-bold text-emerald-600">$50,000/year</span> fee. High margin for us, infinite ROI scalability for the client.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7">
+                        <div class="bg-stone-50 p-6 rounded-2xl border border-stone-200 shadow-sm">
+                            <h3 class="text-center font-bold text-slate-700 mb-4">5-Year TCO Comparison (500 Employee SMB)</h3>
+                            <div class="chart-container" style="height: 50vh;"><canvas id="financialChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PANEL 5: Revised GTM Strategy -->
+        <section class="panel bg-stone-100" id="panel-4">
+            <div class="panel-content">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold text-slate-800 mb-4">GTM Sequence: "Sandbox to Crown Jewel"</h2>
+                    <p class="text-lg text-slate-600 max-w-4xl mx-auto">We must battle-test the Agentic Engine in low-liability, high-turnover environments first, funding our compliance efforts to eventually capture the high-margin healthcare sector.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Phase 1: QSR -->
+                    <div class="bg-white rounded-2xl p-8 shadow-md border-t-8 border-t-emerald-500 transform hover:-translate-y-2 transition duration-300">
+                        <div class="text-5xl mb-4">🍔</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Restaurants (QSR)</h3>
+                        <div class="bg-emerald-100 text-emerald-800 font-bold text-sm uppercase tracking-wider mb-4 inline-block px-3 py-1 rounded">Phase 1: "The Sandbox"</div>
+                        
+                        <p class="text-slate-500 text-sm mb-6 h-16">High employee turnover, zero compliance risk. The perfect environment to train AI agents to execute HR workflows.</p>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <ul class="text-slate-600 space-y-2 font-semibold">
+                                    <li class="flex items-center"><span class="text-emerald-500 mr-2 text-lg">✓</span> Automated Hourly Onboarding</li>
+                                    <li class="flex items-center"><span class="text-emerald-500 mr-2 text-lg">✓</span> POS Permission Provisioning</li>
+                                    <li class="flex items-center"><span class="text-emerald-500 mr-2 text-lg">✓</span> Shift Automation & Swapping</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 1.5: Convenience -->
+                    <div class="bg-white rounded-2xl p-8 shadow-md border-t-8 border-t-indigo-500 transform hover:-translate-y-2 transition duration-300">
+                        <div class="text-5xl mb-4">⛽</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Convenience Stores</h3>
+                        <div class="bg-indigo-100 text-indigo-800 font-bold text-sm uppercase tracking-wider mb-4 inline-block px-3 py-1 rounded">Phase 1.5: Scaling</div>
+                        
+                        <p class="text-slate-500 text-sm mb-6 h-16">Hyper-standardized operations. We copy-paste the Agentic Engine across franchise groups.</p>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <ul class="text-slate-600 space-y-2 font-semibold">
+                                    <li class="flex items-center"><span class="text-indigo-500 mr-2 text-lg">✓</span> Vendor Dispatch APIs</li>
+                                    <li class="flex items-center"><span class="text-indigo-500 mr-2 text-lg">✓</span> SOP Compliance Tracking</li>
+                                    <li class="flex items-center"><span class="text-indigo-500 mr-2 text-lg">✓</span> Franchise Incident Reporting</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2: Healthcare -->
+                    <div class="bg-white rounded-2xl p-8 shadow-md border-t-8 border-t-purple-500 transform hover:-translate-y-2 transition duration-300">
+                        <div class="text-5xl mb-4">⚕️</div>
+                        <h3 class="text-2xl font-bold text-slate-800 mb-1">Healthcare / Dental</h3>
+                        <div class="bg-purple-100 text-purple-800 font-bold text-sm uppercase tracking-wider mb-4 inline-block px-3 py-1 rounded">Phase 2: "Crown Jewel"</div>
+                        
+                        <p class="text-slate-500 text-sm mb-6 h-16">High willingness to pay, shielded by a compliance wall. We use Phase 1 revenue to clear SOC2/HIPAA.</p>
+
+                        <div class="space-y-4 text-sm">
+                            <div>
+                                <ul class="text-slate-600 space-y-2 font-semibold">
+                                    <li class="flex items-center"><span class="text-purple-500 mr-2 text-lg">✓</span> HIPAA-Compliant RAG</li>
+                                    <li class="flex items-center"><span class="text-purple-500 mr-2 text-lg">✓</span> Clinic Payroll Automation</li>
+                                    <li class="flex items-center"><span class="text-purple-500 mr-2 text-lg">✓</span> EHR Integration Scripts</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // --- Navigation Logic ---
+        const container = document.getElementById('mainContainer');
+        const panels = document.querySelectorAll('.panel');
+        const dots = document.querySelectorAll('.nav-dot');
+        let currentPanelIndex = 0;
+
+        function updateDots(index) {
+            dots.forEach(dot => dot.classList.remove('active'));
+            if(dots[index]) dots[index].classList.add('active');
+            currentPanelIndex = index;
+        }
+
+        container.addEventListener('scroll', () => {
+            const index = Math.round(container.scrollLeft / window.innerWidth);
+            updateDots(index);
+        });
+
+        function goToPanel(index) { panels[index].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' }); }
+        function scrollPanel(direction) {
+            let nextIndex = currentPanelIndex + direction;
+            if (nextIndex >= 0 && nextIndex < panels.length) { goToPanel(nextIndex); }
+        }
+
+        // --- Chart.js Configurations ---
+        Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+        Chart.defaults.color = '#64748b';
+
+        // 1. Alpha Team Bar Chart
+        const ctxAlpha = document.getElementById('alphaChart').getContext('2d');
+        new Chart(ctxAlpha, {
+            type: 'bar',
+            data: {
+                labels: ['Dev Velocity', 'Agility', 'Maintenance Overhead'],
+                datasets: [
+                    { label: 'Legacy Enterprise', data: [20, 15, 95], backgroundColor: '#fb7185', borderRadius: 6, barPercentage: 0.6 },
+                    { label: 'Agentic Team', data: [95, 98, 10], backgroundColor: '#10b981', borderRadius: 6, barPercentage: 0.6 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { max: 100 }, x: { grid: { display: false } } } }
+        });
+
+        // 2. Financials Line Chart
+        const ctxFinance = document.getElementById('financialChart').getContext('2d');
+        new Chart(ctxFinance, {
+            type: 'line',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [
+                    { label: 'Legacy Seat-Based', data: [1.2, 1.32, 1.45, 1.60, 1.76], borderColor: '#fb7185', backgroundColor: 'rgba(251, 113, 133, 0.1)', borderWidth: 4, fill: true, tension: 0.3 },
+                    { label: 'Agentic Flat-Fee', data: [0.05, 0.05, 0.05, 0.05, 0.05], borderColor: '#10b981', backgroundColor: 'rgba(16, 185, 129, 0.1)', borderWidth: 4, fill: true, tension: 0 }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { ticks: { callback: function(v) { return '$' + v + 'M'; } } }, x: { grid: { display: false } } } }
+        });
+
+        // --- Engine Simulation Interactivity ---
+        function runEngineSimulation() {
+            const nodes = [
+                document.getElementById('node-1'), document.getElementById('node-2'),
+                document.getElementById('node-3'), document.getElementById('node-4')
+            ];
+            const terminal = document.getElementById('engine-terminal');
+            
+            nodes.forEach(n => n.classList.remove('active'));
+            terminal.innerHTML = '';
+            
+            const steps = [
+                { node: 0, text: "> [00:00] Incoming POST: 'New hire needs POS access and Slack setup.'", delay: 500 },
+                { node: 1, text: "> [00:01] RAG Engine scanning Franchise SOPs... Manual setup bottleneck identified.", delay: 1500 },
+                { node: 2, text: "> [00:02] Generating automation... Drafting Python script for Toast POS & Slack APIs...", delay: 3000 },
+                { node: 2, text: "> [00:03] Script compiled. Unit tests passed.", delay: 4500 },
+                { node: 3, text: "> [00:04] Execution complete. Manager notified. Process fully automated.", delay: 6000, color: '#10b981' }
+            ];
+
+            steps.forEach(step => {
+                setTimeout(() => {
+                    nodes.forEach(n => n.classList.remove('active'));
+                    nodes[step.node].classList.add('active');
+                    
+                    const logLine = document.createElement('div');
+                    logLine.textContent = step.text;
+                    if(step.color) logLine.style.color = step.color;
+                    terminal.appendChild(logLine);
+                    terminal.scrollTop = terminal.scrollHeight;
+                    
+                    if(step.node === 3) nodes.forEach(n => n.classList.add('active'));
+                }, step.delay);
+            });
+        }
+    </script>
+</body>
+</html>
